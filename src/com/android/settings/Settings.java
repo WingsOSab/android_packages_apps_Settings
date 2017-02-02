@@ -488,4 +488,6 @@ public class Settings extends SettingsActivity {
 
     // Wings Extension Additoon
     public static class WingsExtensionActivity extends SettingsActivity {}
+
+    public static class DevRunningServicesActivity extends SettingsActivity { /* empty */ }
 }
