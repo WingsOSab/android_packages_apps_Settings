@@ -71,4 +71,7 @@
      <!-- Wings Extension -->
      <string name="wingsextension_dash_title">Wings Extension</string>
      <string name="wingsextension_summary">Height of Customization!!</string>
+
+    <!-- Density category -->
+    <string name="density_category">Density options</string>
 </resources>
