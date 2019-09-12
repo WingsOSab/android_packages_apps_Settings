@@ -29,7 +29,9 @@ import com.android.settings.core.BasePreferenceController;
 public class WingsVersionPreferenceController extends BasePreferenceController {
 
     @VisibleForTesting
-    static final String WINGS_VERSION_PROPERTY = "ro.wings.display.version";
+    static final String WINGS_VERSION_PROPERTY = "ro.wings.base.version";
+    static final String WINGS_BUILDTYPE_PROPERTY = "ro.wings.buildtype";
+    static final String WINGS_EDITION_PROPERTY = "ro.wings.edition";
 
     public WingsVersionPreferenceController(Context context, String preferenceKey) {
         super(context, preferenceKey);
@@ -37,12 +39,20 @@ public class WingsVersionPreferenceController extends BasePreferenceController {
 
     @Override
     public int getAvailabilityStatus() {
-        return !TextUtils.isEmpty(SystemProperties.get(WINGS_VERSION_PROPERTY)) ? AVAILABLE : UNSUPPORTED_ON_DEVICE;
+        return !TextUtils.isEmpty(SystemProperties.get(WINGS_VERSION_PROPERTY)) && !TextUtils.isEmpty(SystemProperties.get(WINGS_BUILDTYPE_PROPERTY)) && !TextUtils.isEmpty(SystemProperties.get(WINGS_EDITION_PROPERTY))
+                ? AVAILABLE : UNSUPPORTED_ON_DEVICE;
     }
 
     @Override
     public CharSequence getSummary() {
-        return SystemProperties.get(WINGS_VERSION_PROPERTY,
-                mContext.getString(R.string.device_info_default));
+        String wingsVersion = SystemProperties.get(WINGS_VERSION_PROPERTY);
+        String wingsBuildType = SystemProperties.get(WINGS_BUILDTYPE_PROPERTY);
+        String wingsEdition = SystemProperties.get(WINGS_EDITION_PROPERTY);
+        if (!wingsVersion.isEmpty() && !wingsBuildType.isEmpty() && !wingsEdition.isEmpty()) {
+            return wingsVersion + " | " + wingsBuildType + " | " + wingsEdition;
+        } else {
+            return
+                mContext.getString(R.string.device_info_default);
+        }
     }
 }
