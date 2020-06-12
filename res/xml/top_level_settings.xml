@@ -81,7 +81,6 @@
     <com.android.settings.widget.HomepagePreference
         android:key="top_level_wingsextension"
         android:title="@string/wingsextension_dash_title"
-        android:summary="@string/wingsextension_summary"
         android:icon="@drawable/ic_settings_wings"
         android:order="-110"
         android:fragment="com.wings.WingsExtension"/>
