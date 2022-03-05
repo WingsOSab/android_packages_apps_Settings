@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- Copyright (C) 2024 The WingsOS Project
+<!--
+     Copyright (C) 2024 The WingsOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,13 +15,5 @@
      limitations under the License.
 -->
 <resources>
-
-    <!-- Wings Dashboard -->
-    <color name="homepage_wings_background">#FFCD00</color>
-    <color name="wings_accent_ripple">@android:color/system_accent1_500</color>
-    <color name="abt_crd">@android:color/system_neutral1_0</color>
-
-    <!-- xdUI Base Layout -->
-    <color name="homepage_blaze_background">#536dfe</color>
-    <color name="xd_background1">@android:color/system_neutral1_50</color>
+    <color name="xd_background1">@android:color/system_neutral1_900</color>
 </resources>
