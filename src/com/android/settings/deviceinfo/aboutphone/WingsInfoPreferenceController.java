@@ -51,7 +51,7 @@ public class WingsInfoPreferenceController extends AbstractPreferenceController 
         final TextView battery = (TextView) wingsInfoPreference.findViewById(R.id.battery_type_message);
         final TextView infoScreen = (TextView) wingsInfoPreference.findViewById(R.id.screen_message);
         processor.setText(WingsSpecUtils.getProcessorModel());
-        storage.setText(String.valueOf(WingsSpecUtils.getTotalInternalMemorySize()) + "GB ROM + " + String.valueOf(WingsSpecUtils.getTotalRAM()) + "GB RAM");
+        storage.setText(String.valueOf(WingsSpecUtils.getTotalInternalMemorySize()) + "GB ROM + " + WingsSpecUtils.getTotalRAM() + " RAM");
         battery.setText(WingsSpecUtils.getBatteryCapacity(mContext) + " mAh");
         infoScreen.setText(WingsSpecUtils.getScreenRes(mContext));
     }

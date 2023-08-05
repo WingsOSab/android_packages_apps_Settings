@@ -35,6 +35,8 @@ import com.android.internal.util.MemInfoReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.io.File;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +49,7 @@ public class WingsSpecUtils {
     private static final String WINGS_CPU_MODEL_PROPERTY = "ro.wings.cpu";
     private static final String FALLBACK_CPU_MODEL_PROPERTY = "ro.board.platform";
     private static final String POWER_PROFILE_CLASS = "com.android.internal.os.PowerProfile";
+    private static final BigDecimal GB2MB = new BigDecimal(1024);
     static String aproxStorage;
 
     public static String getTotalInternalMemorySize() {
@@ -74,14 +77,13 @@ public class WingsSpecUtils {
         return aproxStorage;
     }
 
-    public static int getTotalRAM() {
+    public static String getTotalRAM() {
         MemInfoReader memReader = new MemInfoReader();
         memReader.readMemInfo();
-        String aproxStorage;
-        double totalmem = memReader.getTotalSize();
-        double gb = (totalmem / 1073741824) + 0.3f; // Cause 4gig devices show memory as 3.48 .-.
-        int gigs = (int) Math.round(gb);
-        return gigs;
+        long totalMem = memReader.getTotalSize();
+        long totalMemMiB = totalMem / (1024 * 1024);
+        BigDecimal rawVal = new BigDecimal(totalMemMiB);
+        return rawVal.divide(GB2MB, 0, RoundingMode.UP) + " GB";
     }
 
     public static String getDeviceName() {
