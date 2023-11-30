@@ -5045,6 +5045,19 @@
             android:authorities="${applicationId}.androidx-startup"
             tools:node="remove" />
 
+        <!-- Wings Extension -->
+        <activity android:name=".Settings$WingsExtensionActivity"
+            android:label="@string/wingsextension_dash_title"
+            android:icon="@drawable/ic_homepage_wings"
+            android:exported="true"
+            android:parentActivityName="com.android.settings">
+            <intent-filter>
+                <action android:name="com.android.settings.action.SETTINGS" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.wings.WingsExtension" />
+        </activity>
+
         <!-- This is the longest AndroidManifest.xml ever. -->
     </application>
 </manifest>

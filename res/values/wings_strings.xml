@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright 2024 The WingsOS Project
+     Copyright (C) 2024 The WingsOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -67,4 +67,8 @@
 
      <!-- Summary for list to control apps that ignore battery saving restrictions -->
      <string name="high_power_apps_summary">Battery optimization availability</string>
+
+     <!-- Wings Extension -->
+     <string name="wingsextension_dash_title">Wings Extension</string>
+     <string name="wingsextension_summary">Height of Customization!!</string>
 </resources>
