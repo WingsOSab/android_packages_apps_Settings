@@ -25,8 +25,6 @@ import android.widget.TextView;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 
-import androidx.preference.PreferenceScreen;
-
 import com.android.settings.R;
 import com.android.settings.utils.WingsSpecUtils;
 import com.android.settingslib.core.AbstractPreferenceController;
@@ -51,7 +49,7 @@ public class WingsInfoPreferenceController extends AbstractPreferenceController 
         final TextView battery = (TextView) wingsInfoPreference.findViewById(R.id.battery_type_message);
         final TextView infoScreen = (TextView) wingsInfoPreference.findViewById(R.id.screen_message);
         processor.setText(WingsSpecUtils.getProcessorModel());
-        storage.setText(String.valueOf(WingsSpecUtils.getTotalInternalMemorySize()) + "GB ROM + " + WingsSpecUtils.getTotalRAM() + " RAM");
+        storage.setText(String.valueOf(WingsSpecUtils.getTotalInternalMemorySize()) + "GB ROM | " + WingsSpecUtils.getTotalRAM() + " RAM");
         battery.setText(WingsSpecUtils.getBatteryCapacity(mContext) + " mAh");
         infoScreen.setText(WingsSpecUtils.getScreenRes(mContext));
     }
