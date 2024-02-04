@@ -2,6 +2,7 @@
  * Copyright (C) 2020 Wave-OS
  * Copyright (C) 2021 ShapeShiftOS
  * Copyright (C) 2024 WingsOS
+ * Copyright (C) 2024 SuperiorExtended-OS
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +19,6 @@
 
 package com.android.settings.deviceinfo.aboutphone;
 
-import java.io.IOException;
 import android.content.Context;
 import android.os.SystemProperties;
 import android.widget.TextView;
@@ -29,8 +29,6 @@ import com.android.settings.R;
 import com.android.settings.utils.WingsSpecUtils;
 import com.android.settingslib.core.AbstractPreferenceController;
 import com.android.settingslib.widget.LayoutPreference;
-import com.android.settingslib.Utils;
-import com.android.settings.core.PreferenceControllerMixin;
 
 public class WingsInfoPreferenceController extends AbstractPreferenceController {
 
@@ -44,14 +42,20 @@ public class WingsInfoPreferenceController extends AbstractPreferenceController 
     public void displayPreference(PreferenceScreen screen) {
         super.displayPreference(screen);
         final LayoutPreference wingsInfoPreference = screen.findPreference(KEY_WINGS_INFO);
-        final TextView processor = (TextView) wingsInfoPreference.findViewById(R.id.processor_message);
-        final TextView storage = (TextView) wingsInfoPreference.findViewById(R.id.storage_code_message);
-        final TextView battery = (TextView) wingsInfoPreference.findViewById(R.id.battery_type_message);
-        final TextView infoScreen = (TextView) wingsInfoPreference.findViewById(R.id.screen_message);
-        processor.setText(WingsSpecUtils.getProcessorModel());
-        storage.setText(String.valueOf(WingsSpecUtils.getTotalInternalMemorySize()) + "GB ROM | " + WingsSpecUtils.getTotalRAM() + " RAM");
-        battery.setText(WingsSpecUtils.getBatteryCapacity(mContext) + " mAh");
-        infoScreen.setText(WingsSpecUtils.getScreenRes(mContext));
+
+        if (wingsInfoPreference != null) {
+            final TextView processor = wingsInfoPreference.findViewById(R.id.processor_message);
+            final TextView storageAndRAM = wingsInfoPreference.findViewById(R.id.storage_code_message);
+            final TextView battery = wingsInfoPreference.findViewById(R.id.battery_type_message);
+            final TextView infoScreen = wingsInfoPreference.findViewById(R.id.screen_message);
+
+            Context context = wingsInfoPreference.getContext();
+
+            processor.setText(WingsSpecUtils.getProcessorModel(context));
+            storageAndRAM.setText(WingsSpecUtils.getStorageAndRAMInfo(context));
+            battery.setText(WingsSpecUtils.getBatteryInfo(context));
+            infoScreen.setText(WingsSpecUtils.getScreenRes(context));
+        }
     }
 
     @Override
