@@ -501,8 +501,19 @@ public class SettingsHomepageActivity extends FragmentActivity implements
 
     private void initAvatarView() {
         final ImageView avatarView = findViewById(R.id.account_avatar);
-        if (avatarView != null) {
-            mUserUtils.setUserAvatarToView(avatarView);
+        final ImageView avatarTwoPaneView = findViewById(R.id.account_avatar_two_pane_version);
+        if (AvatarViewMixin.isAvatarSupported(this)) {
+            avatarView.setVisibility(View.VISIBLE);
+            getLifecycle().addObserver(new AvatarViewMixin(this, avatarView));
+
+            if (mIsEmbeddingActivityEnabled) {
+                avatarTwoPaneView.setVisibility(View.VISIBLE);
+                getLifecycle().addObserver(new AvatarViewMixin(this, avatarTwoPaneView));
+            }
+        } else {
+            if (avatarView != null) {
+                mUserUtils.setUserAvatarToView(mIsEmbeddingActivityEnabled ? avatarTwoPaneView : avatarView);
+            }
         }
     }
 
