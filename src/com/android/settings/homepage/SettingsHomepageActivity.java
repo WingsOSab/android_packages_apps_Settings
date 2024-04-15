@@ -510,6 +510,7 @@ public class SettingsHomepageActivity extends FragmentActivity implements
                 avatarTwoPaneView.setVisibility(View.VISIBLE);
                 getLifecycle().addObserver(new AvatarViewMixin(this, avatarTwoPaneView));
             }
+            mUserUtils.setLongClick(avatarView);
         } else {
             if (avatarView != null) {
                 mUserUtils.setUserAvatarToView(mIsEmbeddingActivityEnabled ? avatarTwoPaneView : avatarView);
