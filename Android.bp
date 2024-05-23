@@ -54,8 +54,8 @@ android_library {
     srcs: [
         "src/**/*.java",
         "src/**/*.kt",
-        "WingsExtension/src/**/*.java",
-        "WingsExtension/src/**/*.kt",
+        "WingsProjection/src/**/*.java",
+        "WingsProjection/src/**/*.kt",
     ],
     aaptflags: ["--extra-packages com.wings"],
     exclude_srcs: [
@@ -66,7 +66,7 @@ android_library {
         "res",
         "res-export", // for external usage
         "res-product",
-        "WingsExtension/res",
+        "WingsProjection/res",
         "TouchGestures/res",
     ],
     static_libs: [
